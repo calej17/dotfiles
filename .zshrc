@@ -27,8 +27,8 @@ export PATH=$GOPATH/bin:$PATH
 export PATH=$PATH:/usr/local/Cellar/go/1.2/libexec/bin
 
 # Configure chruby
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
+# source /usr/local/share/chruby/chruby.sh
+# source /usr/local/share/chruby/auto.sh
 
 # Setup NODE_PATH
 export NODE_PATH=$NODE_PATH:/usr/local/share/npm/lib/node_modules
@@ -140,14 +140,14 @@ autoload -U colors && colors
 setopt prompt_subst
 
 # Set default ruby
-chruby 2.1
+# chruby 2.1
 
 # Display Virtualenv cleanly in right column
 function virtualenv_info {
   [ $VIRTUAL_ENV ] && echo '('`basename $VIRTUAL_ENV`') '
 }
 
-# Display wheather you are in a Git or Mercurial repo
+# Display whether you are in a Git or Mercurial repo
 function prompt_char {
   git branch >/dev/null 2>/dev/null && echo ' ±' && return
   hg root >/dev/null 2>/dev/null && echo ' ☿' && return
