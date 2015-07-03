@@ -63,6 +63,8 @@ alias gd='git diff'
 alias gf='git fetch'
 alias gp='git pr'
 alias gr='git remote -v'
+alias grm='git rebase master'
+alias grc='git rebase --continue'
 alias gbm='git branch -m'
 alias gca='git commit -am'
 alias gco='git checkout'
@@ -164,7 +166,7 @@ local command_status="%(?,%{$fg[green]%}✔%{$reset_color%},%{$fg[red]%}✘%{$re
 
 # Show relative path on one line, then command status
 PROMPT='
-%{$fg[cyan]%}%n@%m %{$fg[white]%}: %{$fg[cyan]%}%~ %{$fg[white]%}
+%{$fg[cyan]%}%n@%m%{$fg[white]%}: %{$fg[cyan]%}%~ %{$fg[white]%}
 ${command_status} %{$reset_color%} '
 
 # Show virtualenv, rbenv, branch, sha, and repo dirty status on right side
@@ -172,3 +174,7 @@ RPROMPT='%{$fg[cyan]%}$(virtualenv_info)%{$fg[white]%}$(ruby_info)$(prompt_char)
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+# Make sure rbenv can be found
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
