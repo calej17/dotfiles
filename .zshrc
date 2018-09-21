@@ -26,13 +26,6 @@ export PATH=$GOPATH/bin:$PATH
 # Add GOROOT to PATH for access to godoc
 export PATH=$PATH:/usr/local/Cellar/go/1.2/libexec/bin
 
-# Configure chruby
-# source /usr/local/share/chruby/chruby.sh
-# source /usr/local/share/chruby/auto.sh
-
-# Setup NODE_PATH
-export NODE_PATH=$NODE_PATH:/usr/local/share/npm/lib/node_modules
-
 # Keep working directory in new tab
 function term_current_pwd () {
   local PWD_URL="file://$HOSTNAME${PWD// /%20}"
@@ -42,9 +35,6 @@ chpwd_functions+=(term_current_pwd)
 
 # ALIASES #
 ###########
-
-# Dotfiles
-alias dot='cd ~/code/github-projects/dotfiles'
 
 # Standard Shell
 alias c='clear'
@@ -77,11 +67,8 @@ alias grpr='git remote prune origin'
 alias grso='git remote show origin'
 alias grao='git remote add origin'
 
-# Gitignores
-alias objc-ignore='cp ~/code/github-projects/gitignore/Objective-C.gitignore .gitignore'
-
 # Homebrew
-alias casks='open /opt/homebrew-cask/Caskroom'
+alias cellar='open /usr/local/Cellar'
 
 # Postgres
 alias pgStart='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
@@ -95,9 +82,6 @@ alias tls='tmux ls'
 
 # Server fanciness with python
 alias server='open http://localhost:1337/ && python -m SimpleHTTPServer 1337'
-
-# Ruby REPLs & Pry for Rails
-alias pryr='pry --simple-prompt -r ./config/environment'
 
 # Xcode
 alias pngcrush='/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/pngcrush -q -revert-iphone-optimizations -d'
