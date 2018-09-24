@@ -41,9 +41,12 @@ alias c='clear'
 alias l='ls -l'
 alias ll='ls -la'
 alias bloat='du -k | sort -nr | more'
-alias cdp='cd Documents/Dev/Projects'
+alias cdp='cd Projects'
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES'
 alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO'
+
+# Dotfiles
+alias dots='cd Projects/dotfiles'
 
 # Bundle Exec
 alias be="bundle exec"
