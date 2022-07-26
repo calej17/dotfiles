@@ -14,6 +14,32 @@ export RUBY_GC_MALLOC_LIMIT=60000000
 export RUBY_GC_HEAP_FREE_SLOTS=200000
 
 # Add sbin, Homebrew, Postgres.app, and NPM related directories to path
+if [ "$(sysctl -n sysctl.proc_translated)" = "1" ]; then
+  local brew_path="/usr/local/homebrew/bin"
+  local brew_opt_path="/usr/local/opt"
+  local nvm_path="$HOME/.nvm-x86"
+else
+  local brew_path="/opt/homebrew/bin"
+  local brew_opt_path="/opt/homebrew/opt"
+  local nvm_path="$HOME/.nvm"
+fi
+
+export PATH="${brew_path}:${PATH}"
+export NVM_DIR="${nvm_path}"
+
+# This loads nvm
+[ -s "${brew_opt_path}/nvm/nvm.sh" ] && . "${brew_opt_path}/nvm/nvm.sh"
+# This loads nvm bash_completion
+[ -s "${brew_opt_path}/nvm/etc/bash_completion.d/nvm" ] && . "${brew_opt_path}/nvm/etc/bash_completion.d/nvm"
+
+# Make sure rbenv can be found
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+# Export NVM path
+# export NVM_DIR=~/.nvm
+# source $(brew --prefix nvm)/nvm.sh
+
 # export PATH=/sbin:$PATH
 # export PATH=/usr/local/bin:$PATH
 # export PATH=/Applications/Postgres93.app/Contents/MacOS/bin:$PATH
@@ -35,6 +61,8 @@ chpwd_functions+=(term_current_pwd)
 
 # CONFIG #
 ###########
+# OC GH/Yarn
+#
 
 # ALIASES #
 ###########
@@ -82,8 +110,11 @@ alias cellar='open /usr/local/Cellar'
 alias pgStart='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
 alias pgStop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
 
+# SSH
+alias ocErrbit='ssh -i .ssh/identity/prod-07022018.pem ec2-user@18.232.62.149 -L 8086:10.30.17.73:80 -N'
+
 # OC
-alias ocyarn='yarn install && yarn start-dev'
+alias ocYarn='yarn install && yarn start-dev'
 
 # TMUX
 # alias attach='tmux attach-session -t'
@@ -177,11 +208,3 @@ RPROMPT='%{$fg[cyan]%}$(virtualenv_info)%{$fg[white]%}$(ruby_info)$(prompt_char)
 
 ### Added by the Heroku Toolbelt
 # export PATH="/usr/local/heroku/bin:$PATH"
-
-# Make sure rbenv can be found
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
-# Export NVM path
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
