@@ -52,3 +52,9 @@
   process = git-lfs filter-process
 [pull]
   rebase = false
+[gpg]
+  program = /opt/homebrew/bin/gpg
+[commit]
+  gpgSign = true
+[tag]
+  gpgSign = true

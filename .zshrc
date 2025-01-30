@@ -1,6 +1,10 @@
 # ENVIRONMENT VARIABLES #
 #########################
 
+# Theme
+ZSH_THEME="half-life"
+# ZSH_THEME="jonathan"
+
 # No brainer, default to ~Vim~, ~Atom~, VS Code?
 export EDITOR="code"
 
@@ -59,13 +63,20 @@ function term_current_pwd () {
 }
 chpwd_functions+=(term_current_pwd)
 
+# GPG Config
+export GPG_TTY=$(tty)
+gpgconf --launch gpg-agent
+
 # CONFIG #
 ###########
 # OC GH/Yarn
-#
+# export YARN_NPM_AUTH_TOKEN=<token>
 
 # ALIASES #
 ###########
+
+# ZSH
+alias ztheme='() { export ZSH_THEME="$@" && source $ZSH/oh-my-zsh.sh }'
 
 # Standard Shell
 alias c='clear'
@@ -112,6 +123,9 @@ alias pgStop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
 
 # SSH
 alias ocErrbit='ssh -i .ssh/identity/prod-07022018.pem ec2-user@18.232.62.149 -L 8086:10.30.17.73:80 -N'
+
+# DayCFO - NO LONGER ReactOnRails
+# alias dcfoStart='foreman start -f Procfile.dev'
 
 # OC
 alias ocYarn='yarn install && yarn start-dev'
